@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Gamer Nation - Inicio</title>
-    <link rel="stylesheet" th:href="@{/public/styles.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <link rel="icon" type="image/x-icon" href="/assets/images/iconoWeb.ico">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Gamer Nation - Inicio</title>
+        <!-- Enlace al CSS dentro de /static/css -->
+        <link rel="stylesheet" th:href="@{/public/css/styles.css}">
+        
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    
+        <!-- Favicon (icono) dentro de /static/images -->
+        <link rel="icon" type="image/x-icon" th:href="@{/public/images/iconoWeb.ico}">
+    </head>
+    
 <body>
     <nav class="navbar">
         <ul>
@@ -75,7 +82,8 @@
                     <a th:href="@{/galeria}" class="cta-button">Ver Consolas</a>
                 </div>
                 <div class="consoles-image">
-                    <img src="/assets/images_galeria/play5.jpg" alt="Consolas">
+                    <!-- Imagen dentro de public/images -->
+                    <img th:src="@{public/images/play5.png}" alt="Consolas">
                 </div>
             </div>
         </section>
@@ -91,7 +99,9 @@
         </div>
     </footer>
 
+    <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="/scripts/inicio.js"></script>
+    <!-- Tu script dentro de public/scripts -->
+    <script th:src="@{public/scripts/inicio.js}"></script>
 </body>
 </html>

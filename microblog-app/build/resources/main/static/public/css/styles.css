@@ -61,10 +61,10 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(rgba(10, 10, 10, 0.9), url('/assets/images/hero-bg.jpg'));
-    background-size: cover;
-    background-position: center;
+    /* Fondo sin imagen, solo un degradado que en este caso es un color sólido */
+    background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9));
 }
+
 
 .hero-content {
     max-width: 800px;
