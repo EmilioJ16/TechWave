@@ -4,3 +4,17 @@ Por ejemplo un usuario autenticado vera el boton de comporar normal y corriente,
 
 
 Para el perfil del usuario podemos para decorarlo poner una barra de progreso por niveles que al comprar vaya desbloqueando niveles y con algunos niveles se lleve algunos regalos/descuentos o algo asi.
+Personalización del perfil con avatares, temas de color o insignias según el nivel. En algun nivel ruleta de descuentos.
+Agregar insignias/logros por acciones como:
+
+"Primera compra" 🎉
+
+"Compraste en Black Friday" 🛍
+
+"Comprador habitual" 🔥
+
+Los puntos acumulados pueden canjearse por descuentos o productos exclusivos.
+
+Un "modo comparador" donde los usuarios puedan elegir dos productos y ver sus diferencias en una tabla interactiva.
+
+Los usuarios pueden guardar productos en una lista de deseos. Si un producto baja de precio o vuelve a estar disponible, reciben una notificación.
