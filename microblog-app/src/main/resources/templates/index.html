@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gamer Nation - Inicio</title>
+    <link rel="stylesheet" th:href="@{/public/styles.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="icon" type="image/x-icon" href="/assets/images/iconoWeb.ico">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a th:href="@{/}" class="active">Inicio</a></li>
+            <li><a th:href="@{/presupuestos}">Solicita presupuesto</a></li>
+            <li><a th:href="@{/galeria}">Videojuegos y consolas</a></li>
+            <li><a th:href="@{/contacto}">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content reveal">
+                <h1>Bienvenido a <span>The Gamer Nation</span></h1>
+                <p>Descubre el universo gaming con las mejores ofertas</p>
+                <a th:href="@{/galeria}" class="cta-button">Explorar Catálogo</a>
+            </div>
+        </section>
+
+        <section class="features reveal">
+            <div class="feature-card">
+                <i class="fas fa-rocket"></i>
+                <h3>Envío Express</h3>
+                <p>24-48h garantizadas</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Garantía Oficial</h3>
+                <p>Productos 100% originales</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-headset"></i>
+                <h3>Soporte 24/7</h3>
+                <p>Asistencia inmediata</p>
+            </div>
+        </section>
+
+        <section class="highlighted-games reveal">
+            <h2>Lanzamientos Destacados</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <!-- Recorre la lista de juegos pasados desde el controlador -->
+                    <div class="swiper-slide" th:each="game : ${games}">
+                        <div class="game-card">
+                            <img th:src="@{${game.image}}" th:alt="${game.name}">
+                            <div class="game-info">
+                                <h4 th:text="${game.name}">Nombre del juego</h4>
+                                <div class="game-details">
+                                    <span class="price" th:text="'$' + ${game.price}">$70</span>
+                                    <span class="platform" th:text="${game.platform}">PC/PS5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="consoles-section reveal">
+            <div class="consoles-content">
+                <div class="consoles-text">
+                    <h2>Next Generation</h2>
+                    <p>Descubre las consolas más potentes</p>
+                    <a th:href="@{/galeria}" class="cta-button">Ver Consolas</a>
+                </div>
+                <div class="consoles-image">
+                    <img src="/assets/images_galeria/play5.jpg" alt="Consolas">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="reveal">
+        <p>© 2023 The Gamer Nation - C/ Los Almendros, 15</p>
+        <div class="social-icons">
+            <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="icon"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="/scripts/inicio.js"></script>
+</body>
+</html>

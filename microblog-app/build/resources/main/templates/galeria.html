@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Galería de videojuegos</title>
+    <link rel="stylesheet" href="/css/estilos_galeria.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" type="image/x-icon" href="/assets/images/iconoWeb.ico">
+
+
+</head>
+
+
+<body>
+    
+    <header class="header">
+        <div class="menu container">
+            <a href="#" class="logo"></a>
+            <input type="checkbox" id="menu">
+            <label for="menu"><img src="/assets/images_galeria/menu.png" class="menu-icono" alt="menu"></label>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="/index.html">Inicio</a></li>
+                    <li><a href="/views/presupestos.html">Solicita presupuesto</a></li>
+                    <li><a href="/views/galeria.html" class="active">Videojuegos y consolas</a></li>
+                    <li><a href="/views/contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+            <div>
+                <ul>
+                    <li class="submenu">
+                        <img src="/assets/images_galeria/car.svg" id="img-carrito" alt="">
+                        <div id="carrito">
+                            <table id="lista-carrito">
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        <th>Precio</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <div id="total-carrito">
+                                <p>Total: <span id="total-precio">$0</span></p>
+                            </div>
+                            <a href="#" id="vaciar-carrito" class="btn-2">Vaciar carrito</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="header-content container">
+        
+            <h1>The gamer Nation</h1>
+            <p>
+                En esta página podras encontar una serie de videojuegos y consolas
+                que podrás comprar por el precio mas competitivo del mercado.
+                <br>
+                Dale a la flecha de la derecha para ver los productos o desliza hacía abajo para poder verlos
+            </p>
+            <div class="botons">
+                <a href="/views/contacto.html" class="btn-1">Mas informacion</a>
+                <a href="/index.html" class="btn-1">Página de Inicio</a>
+                
+        
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+           
+            <a href="#recetas-2">
+                <img class="arrow" src="/assets/images_galeria/arrow.svg" alt="">
+            </a>
+        </div>
+    </header>
+
+    <section class = "recetas-container">
+
+        
+        <div class = "recetas-2" id = "recetas-2">
+            <br>
+            <hr>
+            <br>
+            <h2>Los Mejores Videojuegos <br>al Mejor Precio </h2>
+
+        </div>
+
+    </section>
+
+    <section class = "platillos container" id = "lista">
+
+        <div class = "swiper mySwiper">
+            <div class = "swiper-wrapper">
+                <div class = "swiper-slide">
+                    <div class="platillo">
+                        <h3>Spderman 2</h3>
+                        <p class = "precio">50$</p>
+                        <img src="/assets/images_galeria/pl1.png" alt="">
+                        <p>
+                            Marvel's Spider-Man 2 es un juego para un jugador. Sin embargo, podrás jugar tanto con Peter Parker como con Miles
+                            Morales. Cambia entre los heroicos hombres araña para luchar contra el crimen y descubre las habilidades y los elementos
+                            argumentales que los hacen únicos
+                        </p>
+
+                        <a href="#" class="agregar-carrito btn-2" data-id = "1">Agregar al carrito</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="platillo">
+                        <h3>Halo 2</h3>
+                        <p class="precio">30$</p>
+                        <img src="/assets/images_galeria/pl2.png" alt="">
+                        <p>
+                            Halo 2 es un videojuego de disparos en primera persona desarrollado por Bungie Studios y lanzado para la consola Xbox en
+                            2004. Es la segunda entrega en la franquicia de Halo y su trama continúa los sucesos relatados en Halo: Combat
+                            Evolved.
+                        </p>
+                        <a href="#" class="agregar-carrito btn-2" data-id="2">Agregar al carrito</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="platillo">
+                        <h3>Baldur's Gate III</h3>
+                        <p class="precio">40$</p>
+                        <img src="/assets/images_galeria/pl3.png" alt="">
+                        <p>
+                            Baldur's Gate III es un videojuego de rol desarrollado por Larian Studios. Representa la tercera entrega principal de la
+                            serie Baldur's Gate, basada en el sistema de juego de rol de mesa Dungeons & Dragons.
+                        </p>
+                        <a href="#" class="agregar-carrito btn-2" data-id="3">Agregar al carrito</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="platillo">
+                        <h3>Alan Wake II</h3>
+                        <p class="precio">50$</p>
+                        <img src="/assets/images_galeria/pl4.png" alt="">
+                        <p>
+                            Alan Wake es un escritor que lleva muchos años atrapado en el Lugar oscuro, una tenebrosa realidad alternativa a la que
+                            puede cambiar de forma con sus propias palabras. Aunque nunca se han conocido, ambos están conectados a través de dos
+                            realidades separadas y sus acciones pueden cambiar sus respectivos mundos.
+                        </p>
+                        <a href="#" class="agregar-carrito btn-2" data-id="4">Agregar al carrito</a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+    </section>
+
+
+
+
+
+    <section class="recetas-container">
+    
+        <div class="recetas-2">
+            <hr>
+            <br>
+            <h2>Tambien tenemos <br> las mejores Consolas!! </h2>
+            
+        </div>
+
+    </section>
+
+
+    <section class="platillos container" id="lista-2">
+        
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="platillo">
+                            <h3 class="c1">Play Station 5</h3>
+                            <p class="precio">400$</p>
+                            <img src="/assets/images_galeria/play5.jpg" alt="">
+                            <p class="c2">
+                                La PlayStation 5 (PS5) es la consola de videojuegos de última generación desarrollada por Sony Interactive
+                                Entertainment. Lanzada en noviembre de 2020, la PS5 presenta un diseño elegante y vanguardista con una combinación de
+                                hardware potente y características innovadoras.
+                            </p>
+                            <a href="#" class="agregar-carrito btn-3" data-id="5">Agregar al carrito</a>
+                        </div>
+                    </div>
+        
+                    <div class="swiper-slide">
+                        <div class="platillo">
+                            <h3 class="c1">Xbox X</h3>
+                            <p class="precio">300$</p>
+                            <img src="/assets/images_galeria/c2.png" alt="">
+                            <p class="c2">
+                                La Xbox Series X, de Microsoft, es una consola de última generación con hardware potente, tiempos de carga rápidos y
+                                compatibilidad con juegos anteriores. Destaca por su diseño rectangular y ofrece servicios como Xbox Game Pass para una
+                                experiencia de juego completa.
+                            </p>
+                            <a href="#" class="agregar-carrito btn-3" data-id="6">Agregar al carrito</a>
+                        </div>
+                    </div>
+        
+                    <div class="swiper-slide">
+                        <div class="platillo">
+                            <h3 class="c1">Nintendo Switch</h3>
+                            <p class="precio">250$</p>
+                            <img src="/assets/images_galeria/c3.png" alt="">
+                            <p class="c2">
+                                Desarrollada por Nintendo, la Nintendo Switch es única por su versatilidad. Puede ser utilizada como una consola de
+                                sobremesa tradicional o como una consola portátil con sus mandos desmontables. La biblioteca de juegos incluye títulos
+                                populares de Nintendo y juegos de terceros.
+                            </p>
+                            <a href="#" class="agregar-carrito btn-3" data-id="7">Agregar al carrito</a>
+                        </div>
+                    </div>
+        
+                    <div class="swiper-slide">
+                        <div class="platillo">
+                            <h3 class="c1">Steam Deck OLED</h3>
+                            <p class="precio">500$</p>
+                            <img src="/assets/images_galeria/c1.png" alt="">
+                            <p class="c2">
+                                La Steam Deck ofrece a los jugadores acceso a una amplia variedad de juegos de PC en un formato portátil, proporcionando
+                                una opción diferente a las consolas tradicionales.
+                            </p>
+                            <a href="#" class="agregar-carrito btn-3" data-id="8">Agregar al carrito</a>
+                        </div>
+                    </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+        
+    </section>
+
+    
+    <footer>
+        <p>Derechos de autor © 2023 - C/ Los Almendros, 15</p>
+        <div class="iconos">
+            <a href="https://www.facebook.com/jesus.gonzalezhiguera/?locale=es_LA" class="facebook"><i
+                    class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://web.whatsapp.com/" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://twitter.com/?lang=es" class="twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.instagram.com/" class="instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="/scripts/galeria.js"></script>
+</body>
+
+</html>
