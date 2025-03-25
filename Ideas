@@ -1,0 +1,6 @@
+Para la web inicial (vamos a permitir a los usuarios navegar por algunas paginas sin estar logeados). Dentro de esas paginas habra funciones o botones que los usuarios sun autenticar veran de forma diferente a los autenticados
+Por ejemplo un usuario autenticado vera el boton de comporar normal y corriente, pero el user sin autenticar lo ve con un candado o en gris o algo asi y que al pasar por encima de esos elementos salga un mensaje de
+"Para acceder a esta funcionalidad tiene que estar registrado" y que inlcuso de ahi pueda redirigirse. Ademas de haber un boton de iniciar sesion tipico que redirige a la pagina de iniciar sesion o se sign up.
+
+
+Para el perfil del usuario podemos para decorarlo poner una barra de progreso por niveles que al comprar vaya desbloqueando niveles y con algunos niveles se lleve algunos regalos/descuentos o algo asi.
