@@ -110,7 +110,7 @@ body {
     margin-bottom: 1rem;
 }
 
-.highlighted-games {
+.highlighted-products {
     padding: 4rem 1rem;
 }
 
@@ -132,30 +132,30 @@ body {
     transition: transform 0.3s ease;
 }
 
-.game-card {
+.product-card {
     background: var(--dark-secondary);
     border-radius: 15px;
     overflow: hidden;
     transition: transform 0.3s ease;
 }
 
-.game-card:hover {
+.product-card:hover {
     transform: translateY(-5px);
 }
 
-.game-card img {
+.product-card img {
     width: 100%;
     height: 350px;
     object-fit: cover;
     border-bottom: 3px solid var(--primary);
 }
 
-.game-info {
+.product-info {
     padding: 1.5rem;
     text-align: center;
 }
 
-.game-details {
+.product-details {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -268,7 +268,7 @@ footer {
     transform: scale(0.8) translateX(-30%);
 }
 
-.game-card {
+.product-card {
     background: var(--dark-secondary);
     border-radius: 15px;
     overflow: hidden;
@@ -279,14 +279,14 @@ footer {
     width: 100%;
 }
 
-.game-card img {
+.product-card img {
     height: 70%; /* 70% para la imagen */
     width: 100%;
     object-fit: cover;
     border-bottom: 2px solid var(--primary);
 }
 
-.game-info {
+.product-info {
     height: 30%;
     padding: 1rem;
     display: flex;
@@ -294,7 +294,7 @@ footer {
     justify-content: space-between;
 }
 
-.game-details {
+.product-details {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -326,7 +326,7 @@ footer {
         transform: scale(0.8);
     }
     
-    .game-card {
+    .product-card {
         aspect-ratio: 1/1.2; /* Rectángulo vertical en móvil */
     }
 }
