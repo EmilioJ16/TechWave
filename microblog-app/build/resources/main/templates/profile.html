@@ -1,84 +1,20 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MicroBlog - Perfil de Usuario</title>
-  <link rel="stylesheet" th:href="@{public/css/styles.css}">
+    <meta charset="UTF-8">
+    <title>Perfil de Usuario</title>
+    <link rel="stylesheet" th:href="@{/public/css/styles.css}">
 </head>
 <body>
-  <div class="container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="user-profile">
-        <img src="https://i.pravatar.cc/100" alt="Avatar" class="avatar">
-        <div th:if="${currentUser != null}">
-          <h2 th:text="${currentUser.name}">Usuario</h2>
-          <p th:text="'@' + ${currentUser.name.toLowerCase().replace(' ', '')}">Usuario</p>
-        </div>
-        <div th:unless="${currentUser != null}">
-          <p>
-            <a th:href="@{/login}">Iniciar sesión</a> | 
-            <a th:href="@{/signup}">Registrarse</a>
-          </p>
-        </div>
-        <nav class="nav-links">
-          <a th:href="@{/}">Inicio</a>
-          <a th:href="@{/user/{id}(id=${currentUser.id})}" class="active">Perfil</a>
-          <form th:if="${currentUser != null}" th:action="@{/logout}" method="post">
-            <input type="submit" value="Salir" class="logout">
-          </form>
-        </nav>
-      </div>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="main-content">
-      <section class="profile-header">
-        <div class="profile-banner"></div>
-        <div class="profile-info">
-          <img th:src="'https://i.pravatar.cc/100?img=' + ${profileUser.id}" alt="Avatar" class="profile-avatar">
-          <div class="profile-actions">
-            <!-- Mostrar formulario de seguir o dejar de seguir según el parámetro followButton -->
-            <form th:if="${followButton.equals('follow')}"
-                  th:action="@{/follow/{user_id}(user_id=${profileUser.id})}" method="post">
-              <input type="submit" value="Seguir" class="btn-follow">
-            </form>
-            <form th:if="${followButton.equals('unfollow')}"
-                  th:action="@{/unfollow/{user_id}(user_id=${profileUser.id})}" method="post">
-              <input type="submit" value="Dejar de seguir" class="btn-follow">
-            </form>
-          </div>
-          <h1 th:text="${profileUser.name}">Nombre de Usuario</h1>
-          <p class="user-handle" th:text="${userHandle}">@username</p>
-          <p class="bio" th:text="${profileUser.description}">Descripción del perfil</p>
-        </div>
-      </section>
-
-      <section class="posts-feed">
-        <article class="message" th:each="post : ${userMessages}">
-          <div class="post-header">
-            <img th:src="'https://i.pravatar.cc/40?img=' + ${profileUser.id}" alt="Avatar" class="avatar">
-            <div class="post-author">
-                <a th:href="@{/user/{id}(id=${profileUser.id})}" class="author-name" th:text="${profileUser.name}">
-                    Nombre Usuario
-                  </a>                  
-              <span class="author-handle" 
-                    th:text="'@' + ${profileUser.name.toLowerCase().replace(' ', '')} + ' · ' + ${#dates.format(post.timestamp, 'MMM dd, yyyy HH:mm')}">
-                @username · fecha
-              </span>
-            </div>
-          </div>
-          <div class="post-content">
-            <p th:text="${post.text}">Texto del post</p>
-          </div>
-          <button class="reply-btn" th:attr="onclick='window.location.href=\'/message/' + ${post.id} + '\''">
-            Responder
-          </button>
-          
-        </article>
-      </section>
-    </main>
-  </div>
+    <header>
+        <h1 th:text="'Perfil de ' + ${profileUser.name}"></h1>
+    </header>
+    <section>
+        <p><strong>Nombre:</strong> <span th:text="${profileUser.name}"></span></p>
+        <p><strong>Apellido:</strong> <span th:text="${profileUser.surname}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${profileUser.email}"></span></p>
+        <!-- Agrega más campos según sea necesario -->
+    </section>
+    <a th:href="@{/}">Volver al inicio</a>
 </body>
 </html>

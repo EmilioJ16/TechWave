@@ -18,13 +18,35 @@
     
 <body>
     <nav class="navbar">
-        <ul>
+        <!-- Sección Izquierda -->
+        <ul class="navbar-left">
+            <li th:if="${currentUser != null}">
+                <a th:href="@{/logout}" class="nav-btn">Logout</a>
+            </li>
+            <li th:if="${currentUser == null}">
+                <a th:href="@{/login}" class="nav-btn">Iniciar Sesión/Registrarse</a>
+            </li>
+        </ul>
+    
+        <!-- Sección Central -->
+        <ul class="navbar-center">
             <li><a th:href="@{/}" class="active">Inicio</a></li>
             <li><a th:href="@{/presupuestos}">Solicita presupuesto</a></li>
             <li><a th:href="@{/galeria}">Nuestros productos</a></li>
             <li><a th:href="@{/contacto}">Contacto</a></li>
         </ul>
+    
+        <!-- Sección Derecha -->
+        <ul class="navbar-right">
+            <li th:if="${currentUser != null}">
+                <a th:href="@{'/user/' + ${currentUser.id}}" class="username-link">
+                    <span th:text="${currentUser.name}">Nombre Usuario</span>
+                </a>
+            </li>
+        </ul>
     </nav>
+    
+    
 
     <main>
         <section class="hero">

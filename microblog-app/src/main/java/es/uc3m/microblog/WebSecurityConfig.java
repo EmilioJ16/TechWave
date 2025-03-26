@@ -19,8 +19,8 @@ public class WebSecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((authorize) -> authorize
-                .requestMatchers("/login", "/signup", "/public/**").permitAll()  // Rutas accesibles sin autenticación
-                .anyRequest().authenticated()  // Otras rutas requieren autenticación
+                .requestMatchers("/", "/login", "/signup", "/public/**").permitAll() // Permitir acceso a la raíz
+                .anyRequest().authenticated()
             )
             .formLogin(formLogin -> formLogin
                 .loginPage("/login")

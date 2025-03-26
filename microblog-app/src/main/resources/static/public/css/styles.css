@@ -17,7 +17,6 @@ body {
     font-family: 'Arial', sans-serif;
     overflow-x: hidden;
 }
-
 .navbar {
     position: fixed;
     top: -100px;
@@ -27,19 +26,47 @@ body {
     padding: 1.2rem 0;
     z-index: 1000;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Convertimos la navbar en contenedor flex */
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; // Útil si quieres empujar la parte derecha del todo */
+    
+    /* 
+       Si prefieres que la parte central crezca, 
+       puedes usar space-between y dejar la parte central con flex-grow.
+       Lo veremos abajo.
+    */
 }
 
 .navbar.visible {
     top: 0;
 }
 
-.navbar ul {
+/* Secciones izquierda, centro, derecha */
+.navbar-left, .navbar-center, .navbar-right {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
+    align-items: center;
+    gap: 2rem;      /* Separación entre los <li> */
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
+.navbar-left {
+    margin-left: 2rem;
+}
+
+.navbar-right {
+    margin-right: 2rem;
+}
+
+.navbar-center {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+/* Ajusta el estilo de los enlaces */
 .navbar a {
     color: var(--light);
     text-decoration: none;
@@ -54,6 +81,25 @@ body {
     background: var(--primary);
     color: var(--dark);
 }
+
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: var(--light);
+    padding: 0.8rem 1.5rem;
+    border-radius: 0;
+    display: inline-flex;
+    align-items: center;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.nav-btn:hover {
+    transform: scale(1.05);
+    color: var(--primary);
+    background: none;
+}
+
 
 .hero {
     height: 100vh;
