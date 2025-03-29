@@ -685,20 +685,29 @@ footer {
 
 .badges-container {
     display: flex;
-    gap: 1.5rem;
+    justify-content: center;
+    gap: 1rem;
     flex-wrap: wrap;
 }
 
+/* Estilo base para cada insignia */
 .badge {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
     padding: 1rem;
-    width: 120px;
+    border-radius: 10px;
     text-align: center;
+    transition: transform 0.3s ease, background 0.3s ease;
+    width: 120px;
+    cursor: default;
+}
+.badge:hover {
+    transform: scale(1.05);
+    background: rgba(255, 215, 0, 0.2); /* Un ligero cambio en el fondo */
+}
+.badge i {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
 }
 
 .badge img {
@@ -707,9 +716,11 @@ footer {
     object-fit: contain;
 }
 
+/* Texto de la insignia */
 .badge p {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--light);
+    margin: 0;
 }
 
 /* Datos personales */
