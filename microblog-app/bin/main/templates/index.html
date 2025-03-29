@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tech Wave - Inicio</title>
+        <!-- Enlace al CSS dentro de /static/css -->
+        <link rel="stylesheet" th:href="@{/public/css/styles.css}">
+        
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    
+        <!-- Favicon (icono) dentro de /static/images -->
+        <link rel="icon" type="image/x-icon" th:href="@{/public/images/iconoWeb.ico}">
+    </head>
+    
+<body>
+    <nav class="navbar">
+        <!-- Sección Izquierda -->
+        <ul class="navbar-left">
+            <li th:if="${currentUser != null}">
+                <a th:href="@{/logout}" class="nav-btn">Logout</a>
+            </li>
+            <li th:if="${currentUser == null}">
+                <a th:href="@{/login}" class="nav-btn">Iniciar Sesión/Registrarse</a>
+            </li>
+        </ul>
+    
+        <!-- Sección Central -->
+        <ul class="navbar-center">
+            <li><a th:href="@{/}" class="active">Inicio</a></li>
+            <li><a th:href="@{/presupuestos}">Solicita presupuesto</a></li>
+            <li><a th:href="@{/galeria}">Nuestros productos</a></li>
+            <li><a th:href="@{/contacto}">Contacto</a></li>
+        </ul>
+    
+        <!-- Sección Derecha -->
+        <ul class="navbar-right">
+            <li th:if="${currentUser != null}">
+                <a th:href="@{'/user/' + ${currentUser.id}}" class="username-link">
+                    <span th:text="${currentUser.name}">Nombre Usuario</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+    
+
+    <main>
+        <section class="hero">
+            <div class="hero-content reveal">
+                <h1>Bienvenido a <span>Tech Wave</span></h1>
+                <p>Equípate con lo último, sube a la ola</p>
+                <a th:href="@{/galeria}" class="cta-button">Explorar Catálogo</a>
+            </div>
+        </section>
+
+        <section class="features reveal">
+            <div class="feature-card">
+                <i class="fas fa-rocket"></i>
+                <h3>Envío Express</h3>
+                <p>24-48h garantizadas</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Garantía Oficial</h3>
+                <p>Productos 100% originales</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-headset"></i>
+                <h3>Soporte 24/7</h3>
+                <p>Asistencia inmediata</p>
+            </div>
+        </section>
+
+        <section class="highlighted-products reveal">
+            <h2>Móviles Destacados</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <!-- Recorre la lista de móviles pasada desde el controlador -->
+                    <div class="swiper-slide" th:each="mobile : ${mobiles}">
+                        <div class="product-card">
+                            <!-- Se asume que mobile.image es la ruta de la imagen -->
+                            <img th:src="@{${mobile.image}}" th:alt="${mobile.name}">
+                            <div class="product-info">
+                                <h4 th:text="${mobile.name}">Nombre del móvil</h4>
+                                <div class="product-details">
+                                    <!-- Se asume que mobile.currentPrice ya tiene el precio actual calculado -->
+                                    <span class="price" th:text="'$' + ${mobile.currentPrice}">$0</span>
+                                    <!-- Puedes mostrar otras propiedades, como la marca o modelo, si las tienes -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+        <section class="consoles-section reveal">
+            <div class="consoles-content">
+                <div class="consoles-text">
+                    <h2>Next Generation</h2>
+                    <p>Descubre las consolas más potentes</p>
+                    <a th:href="@{/galeria}" class="cta-button">Ver Consolas</a>
+                </div>
+                <div class="consoles-image">
+                    <!-- Imagen dentro de public/images -->
+                    <img th:src="@{public/images/play5.png}" alt="Consolas">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="reveal">
+        <p>© 2025 Tech Wave - C/ UC3M</p>
+        <div class="social-icons">
+            <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="icon"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- Tu script dentro de public/scripts -->
+    <script th:src="@{public/scripts/inicio.js}"></script>
+</body>
+</html>

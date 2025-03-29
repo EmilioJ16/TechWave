@@ -59,12 +59,18 @@ public class MainController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
         User profileUser = userOpt.get();
+
+        // En el futuro, podrías:
+        // profileUser.setLevel(userService.calculateLevel(profileUser));
+        // profileUser.setPoints(userService.getPoints(profileUser));
+        // ...
+
         String userHandle = "@" + profileUser.getName().toLowerCase().replace(" ", "");
         model.addAttribute("profileUser", profileUser);
         model.addAttribute("userHandle", userHandle);
 
-        return "profile";
-    }
+        return "profile"; // la vista con la maqueta anterior
+        }
 
     // Formulario de registro de usuario
     @GetMapping("/signup")

@@ -31,6 +31,16 @@ public class User {
     @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres.")
     private String password;
 
+    @Column(nullable = true)
+    private Integer level = 1; // Valor por defecto, por ejemplo 1
+
+    @Column(nullable = true)
+    private Integer points = 0;
+
+
+
+
+
     // Relación de uno a muchos con los mensajes (si la necesitas, añádela aquí)
 
     // Getters y Setters
@@ -68,6 +78,22 @@ public class User {
     }
     public void setPassword(String password) { 
         this.password = password; 
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public Integer getPoints() {
+        return points;
+    }
+    
+    public void setPoints(Integer points) {
+        this.points = points;
     }
 
     @Override

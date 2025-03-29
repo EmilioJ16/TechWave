@@ -2,19 +2,110 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Perfil de Usuario</title>
+    <title>Perfil de [[${profileUser.name}]]</title>
     <link rel="stylesheet" th:href="@{/public/css/styles.css}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1 th:text="'Perfil de ' + ${profileUser.name}"></h1>
-    </header>
-    <section>
-        <p><strong>Nombre:</strong> <span th:text="${profileUser.name}"></span></p>
-        <p><strong>Apellido:</strong> <span th:text="${profileUser.surname}"></span></p>
-        <p><strong>Email:</strong> <span th:text="${profileUser.email}"></span></p>
-        <!-- Agrega más campos según sea necesario -->
-    </section>
-    <a th:href="@{/}">Volver al inicio</a>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <!-- Sección Izquierda -->
+        <ul class="navbar-left">
+            <li><a th:href="@{/logout}" class="nav-btn">Logout</a></li>
+        </ul>
+
+        <!-- Sección Central -->
+        <ul class="navbar-center">
+            <li><a th:href="@{/}">Inicio</a></li>
+            <li><a th:href="@{/presupuestos}">Solicita presupuesto</a></li>
+            <li><a th:href="@{/galeria}">Nuestros productos</a></li>
+            <li><a th:href="@{/contacto}">Contacto</a></li>
+        </ul>
+
+        <!-- Sección Derecha -->
+        <ul class="navbar-right">
+            <li>
+                <a th:href="@{'/user/' + ${currentUser.id}}" class="username-link active">
+                    <span th:text="${currentUser.name}">Nombre Usuario</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Contenido del perfil -->
+    <main class="profile-container">
+        <!-- Cabecera del perfil -->
+        <section class="profile-header">
+            <div class="profile-info">
+                <h1 class="profile-name" th:text="${profileUser.name}">Nombre</h1>
+                <p class="profile-handle" th:text="${userHandle}">@usuario</p>
+                <p class="profile-email" th:text="${profileUser.email}">email@example.com</p>
+            </div>
+        </section>
+
+        <!-- Sección de nivel y barra de progreso -->
+        <section class="profile-level">
+            <h2>Nivel y Progreso</h2>
+            <p>
+                <strong>Nivel:</strong>
+                <span th:text="${profileUser.level != null ? profileUser.level : 1}">1</span>
+            </p>
+            <!-- Barra de progreso -->
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 30%;">
+                    <span class="progress-text">30%</span>
+                </div>
+            </div>
+            <p class="points-info">
+                Puntos acumulados:
+                <span th:text="${profileUser.points != null ? profileUser.points : 0}">0</span>
+            </p>
+        </section>
+
+        <!-- Sección de insignias / logros -->
+        <section class="profile-badges">
+            <h2>Insignias y Logros</h2>
+            <div class="badges-container">
+                <div class="badge">
+                    <img th:src="@{/public/images/badges/first-purchase.png}" alt="Primera Compra">
+                    <p>Primera compra</p>
+                </div>
+                <div class="badge">
+                    <img th:src="@{/public/images/badges/black-friday.png}" alt="Black Friday">
+                    <p>Compraste en Black Friday</p>
+                </div>
+                <div class="badge">
+                    <img th:src="@{/public/images/badges/habitual.png}" alt="Comprador Habitual">
+                    <p>Comprador habitual</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Datos personales -->
+        <section class="profile-details">
+            <h2>Datos Personales</h2>
+            <p><strong>Nombre:</strong> <span th:text="${profileUser.name}">Nombre</span></p>
+            <p><strong>Apellido:</strong> <span th:text="${profileUser.surname}">Apellido</span></p>
+            <p><strong>Email:</strong> <span th:text="${profileUser.email}">email@example.com</span></p>
+        </section>
+    </main>
+
+    <footer class="reveal">
+        <p>© 2025 Tech Wave - C/ UC3M</p>
+        <div class="social-icons">
+            <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="icon"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script th:src="@{/public/scripts/inicio.js}"></script>
+
 </body>
 </html>
