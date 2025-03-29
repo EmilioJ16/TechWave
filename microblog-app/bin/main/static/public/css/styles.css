@@ -750,6 +750,8 @@ footer {
     color: var(--dark);
 }
 
+
+
 /* Responsive */
 @media (max-width: 768px) {
     .profile-header {

@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import es.uc3m.microblog.services.UserDetailsServiceImpl;
 
@@ -28,14 +29,13 @@ public class WebSecurityConfig {
                 .defaultSuccessUrl("/", true) // Redirige a la página principal tras el login
                 .permitAll())
             .logout(logout -> logout
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login?logout")
+                // Permite logout por GET
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
+                .logoutSuccessUrl("/") // Redirige a la página principal tras el logout
                 .permitAll());
                 
         return http.build();
     }
-    
-
     
     @Bean
     PasswordEncoder passwordEncoder() {
