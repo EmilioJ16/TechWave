@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Variables del Carrito
     const totalPrecioElemento = document.getElementById("total-precio");
     const cartPanel = document.getElementById("cart-panel");
-    const cartTableBody = document.querySelector("#cart-table tbody");
+    const cartTableBody = document.querySelector("#lista-carrito tbody");
     const vaciarCarritoBtn = document.getElementById("btn-clear-cart");
     const btnCart = document.getElementById("btn-cart");
 
