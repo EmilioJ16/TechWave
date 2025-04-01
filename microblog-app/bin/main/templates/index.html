@@ -32,7 +32,7 @@
         <ul class="navbar-center">
             <li><a th:href="@{/}" class="active">Inicio</a></li>
             <li><a th:href="@{/presupuestos}">Solicita presupuesto</a></li>
-            <li><a th:href="@{/galeria}">Nuestros productos</a></li>
+            <li><a th:href="@{/shop}">Nuestros productos</a></li>
             <li><a th:href="@{/contacto}">Contacto</a></li>
         </ul>
     
@@ -53,7 +53,7 @@
             <div class="hero-content reveal">
                 <h1>Bienvenido a <span>Tech Wave</span></h1>
                 <p>Equípate con lo último, sube a la ola</p>
-                <a th:href="@{/galeria}" class="cta-button">Explorar Catálogo</a>
+                <a th:href="@{/shop}" class="cta-button">Explorar Catálogo</a>
             </div>
         </section>
 
@@ -79,17 +79,13 @@
             <h2>Móviles Destacados</h2>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <!-- Recorre la lista de móviles pasada desde el controlador -->
                     <div class="swiper-slide" th:each="mobile : ${mobiles}">
                         <div class="product-card">
-                            <!-- Se asume que mobile.image es la ruta de la imagen -->
                             <img th:src="@{${mobile.image}}" th:alt="${mobile.name}">
                             <div class="product-info">
                                 <h4 th:text="${mobile.name}">Nombre del móvil</h4>
                                 <div class="product-details">
-                                    <!-- Se asume que mobile.currentPrice ya tiene el precio actual calculado -->
                                     <span class="price" th:text="'$' + ${mobile.currentPrice}">$0</span>
-                                    <!-- Puedes mostrar otras propiedades, como la marca o modelo, si las tienes -->
                                 </div>
                             </div>
                         </div>

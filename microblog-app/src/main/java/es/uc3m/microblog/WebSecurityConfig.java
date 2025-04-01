@@ -9,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 import es.uc3m.microblog.services.UserDetailsServiceImpl;
 
 @Configuration
@@ -20,23 +19,23 @@ public class WebSecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((authorize) -> authorize
-                .requestMatchers("/", "/login", "/signup", "/public/**").permitAll() // Permitir acceso a la raíz
+                .requestMatchers("/", "/login", "/signup", "/public/**", "/shop", "/api/cart/**", "/api/purchase/**").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(formLogin -> formLogin
                 .loginPage("/login")
-                .usernameParameter("email") // <-- Indica que el parámetro de usuario se llama "email"
-                .defaultSuccessUrl("/", true) // Redirige a la página principal tras el login
-                .permitAll())
+                .usernameParameter("email")
+                .defaultSuccessUrl("/", true)
+                .permitAll()
+            )
             .logout(logout -> logout
-                // Permite logout por GET
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
-                .logoutSuccessUrl("/") // Redirige a la página principal tras el logout
-                .permitAll());
-                
+                .logoutSuccessUrl("/")
+                .permitAll()
+            );
         return http.build();
     }
-    
+
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

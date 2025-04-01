@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tech Wave - Tienda</title>
+    <!-- Hoja de estilos para la tienda -->
+    <link rel="stylesheet" th:href="@{/public/css/styles_shop.css}">
+    <!-- Swiper, Font Awesome y Boxicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" th:href="@{/public/images/iconoWeb.ico}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <!-- Sección Izquierda -->
+        <ul class="navbar-left">
+            <li th:if="${currentUser != null}">
+                <a th:href="@{/logout}" class="nav-btn">Logout</a>
+            </li>
+            <li th:if="${currentUser == null}">
+                <a th:href="@{/login}" class="nav-btn">Iniciar Sesión/Registrarse</a>
+            </li>
+        </ul>
+        <!-- Sección Central -->
+        <ul class="navbar-center">
+            <li><a th:href="@{/}" class="active">Inicio</a></li>
+            <li><a th:href="@{/presupuestos}">Solicita presupuesto</a></li>
+            <li><a th:href="@{/shop}">Nuestros productos</a></li>
+            <li><a th:href="@{/contacto}">Contacto</a></li>
+        </ul>
+        <!-- Sección Derecha: Icono del carrito con menú desplegable -->
+        <ul class="navbar-right">
+            <li class="submenu">
+                <a href="#" id="btn-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count" th:text="${cart != null ? cart.totalItems : 0}">0</span>
+                </a>
+                <div id="carrito">
+                    <table id="lista-carrito">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Los items del carrito se cargarán vía JavaScript -->
+                        </tbody>
+                    </table>
+                    <div id="total-carrito">
+                        <p>Total: <span id="total-precio">$0</span></p>
+                    </div>
+                    <a href="#" id="vaciar-carrito" class="btn-2">Vaciar carrito</a>
+                </div>
+            </li>
+            <li th:if="${currentUser != null}">
+                <a th:href="@{'/user/' + ${currentUser.id}}" class="username-link">
+                    <span th:text="${currentUser.name}">Nombre Usuario</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Contenedor principal: Catálogo de productos -->
+    <main class="shop-container container">
+        <h1>Catálogo de Productos</h1>
+        <!-- Buscador de productos -->
+        <div class="search-box">
+            <input type="text" id="search" placeholder="Buscar productos..."/>
+        </div>
+        <div class="product-grid">
+            <!-- Se itera sobre la lista de productos pasada desde el controlador -->
+            <div class="product-card" th:each="product : ${products}">
+                <img th:src="@{${product.image}}" th:alt="${product.name}">
+                <div class="product-info">
+                    <h4 th:text="${product.name}">Nombre del producto</h4>
+                    <p th:text="${product.description}">Descripción breve del producto</p>
+                    <div class="product-details">
+                        <span class="price" th:text="'$' + ${product.currentPrice}">$0</span>
+                    </div>
+                    <a href="#" class="btn-2 add-to-cart" th:attr="data-id=${product.id}">Agregar al carrito</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="reveal">
+        <p>© 2025 Tech Wave - C/ UC3M</p>
+        <div class="social-icons">
+            <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="icon"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script th:src="@{/public/scripts/inicio.js}"></script>
+    <script th:src="@{/public/scripts/shop.js}"></script>
+</body>
+</html>

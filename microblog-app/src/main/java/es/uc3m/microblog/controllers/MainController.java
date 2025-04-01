@@ -16,6 +16,8 @@ import org.springframework.web.server.ResponseStatusException;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Controller
 @RequestMapping("/")
@@ -37,18 +39,35 @@ public class MainController {
             User currentUser = userRepository.findByEmail(principal.getName());
             model.addAttribute("currentUser", currentUser);
             // Se pueden agregar más atributos para usuarios autenticados
-
-
         } else {
             // Datos generales para usuarios no autenticados
         }
         
         List<Product> mobiles = productRepository.findByCategoryName("Mobile");
-    System.out.println("Found " + mobiles.size() + " mobile products.");
-    model.addAttribute("mobiles", mobiles);
-
+        System.out.println("Found " + mobiles.size() + " mobile products.");
+        model.addAttribute("mobiles", mobiles);
         
         return "index";  // Retorna la vista index.html
+    }
+    
+    
+    @GetMapping("/shop")
+    public String shopPage(Model model, Principal principal) {
+        // Si el usuario está autenticado, lo añadimos al modelo
+        if (principal != null) {
+            User currentUser = userRepository.findByEmail(principal.getName());
+            model.addAttribute("currentUser", currentUser);
+        }
+
+        // Convertir Iterable<Product> en List<Product>
+        List<Product> products = StreamSupport
+                .stream(productRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
+
+        System.out.println("Found " + products.size() + " products.");
+        model.addAttribute("products", products);
+
+        return "shop"; // Retorna la vista shop.html
     }
 
     // Vista de perfil de usuario
@@ -59,18 +78,12 @@ public class MainController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
         User profileUser = userOpt.get();
-
-        // En el futuro, podrías:
-        // profileUser.setLevel(userService.calculateLevel(profileUser));
-        // profileUser.setPoints(userService.getPoints(profileUser));
-        // ...
-
         String userHandle = "@" + profileUser.getName().toLowerCase().replace(" ", "");
         model.addAttribute("profileUser", profileUser);
         model.addAttribute("userHandle", userHandle);
 
-        return "profile"; // la vista con la maqueta anterior
-        }
+        return "profile"; // Retorna la vista profile.html
+    }
 
     // Formulario de registro de usuario
     @GetMapping("/signup")
@@ -86,12 +99,10 @@ public class MainController {
                          @RequestParam(name = "passwordRepeat") String passwordRepeat,
                          Model model) {
 
-        // Validar si las contraseñas coinciden
         if (!user.getPassword().equals(passwordRepeat)) {
             bindingResult.rejectValue("password", "password.mismatch", "Passwords do not match");
         }
 
-        // Verificar si el correo ya está registrado
         if (userRepository.findByEmail(user.getEmail()) != null) {
             bindingResult.rejectValue("email", "email.exists", "An account with this email already exists");
         }
