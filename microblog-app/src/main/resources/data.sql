@@ -1,10 +1,20 @@
+-- Desactivar restricciones de clave foránea temporalmente
+SET FOREIGN_KEY_CHECKS = 0;
+
 -- Vaciar y reiniciar las tablas antes de insertar nuevos datos
+DELETE FROM cart_item; -- Asegura eliminar primero los elementos del carrito
 DELETE FROM price;
 DELETE FROM product;
 DELETE FROM category;
+
+-- Reiniciar los IDs autoincrementales
+ALTER TABLE cart_item AUTO_INCREMENT = 1;
 ALTER TABLE price AUTO_INCREMENT = 1;
 ALTER TABLE product AUTO_INCREMENT = 1;
 ALTER TABLE category AUTO_INCREMENT = 1;
+
+-- Volver a activar restricciones de clave foránea
+SET FOREIGN_KEY_CHECKS = 1;
 
 -- Inserta las categorías
 INSERT INTO category (id, name) VALUES (1, 'Mobile');
@@ -31,5 +41,3 @@ INSERT INTO price (id, product_id, price, valid_from) VALUES
     (6, 6, 1599.99, '2024-03-26'), 
     (7, 7, 199.99, '2024-03-26'), 
     (8, 8, 299.99, '2024-03-26');
-
-
