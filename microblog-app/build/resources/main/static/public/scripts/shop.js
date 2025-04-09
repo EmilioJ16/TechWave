@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    // CSRF Token
+    const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+
     // Inicializar Swiper
     var swiper = new Swiper(".mySwiper", {
         slidesPerView: 3,
@@ -59,7 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const productId = btn.getAttribute("data-id");
         fetch("/api/cart/add", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                [csrfHeader]: csrfToken
+             },
             body: JSON.stringify({ productId: productId, quantity: 1 })
         })
         .then(response => {
@@ -86,7 +95,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if(e.target.classList.contains("borrar")) {
             const productId = e.target.getAttribute("data-id");
             fetch(`/api/cart/remove/${productId}`, {
-                method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    [csrfHeader]: csrfToken
+                }
             })
             .then(response => {
                 if(response.ok) {
@@ -117,7 +129,12 @@ document.addEventListener("DOMContentLoaded", () => {
             confirmButtonText: "Sí, vaciar"
         }).then((result) => {
             if(result.isConfirmed) {
-                fetch("/api/cart/clear", { method: "DELETE" })
+                fetch("/api/cart/clear", { 
+                    method: "DELETE",
+                    headers: {
+                        [csrfHeader]: csrfToken
+                    } 
+                })
                 .then(response => {
                     if(response.ok) {
                         Swal.fire("Vaciado!", "El carrito ha sido vaciado.", "success");

@@ -120,4 +120,14 @@ public class MainController {
     public String loginForm() {
         return "login";
     }
+
+    // Página de contacto
+    @GetMapping("/contacto")
+    public String contacto(Model model, Principal principal) {
+        if (principal != null) {
+            User currentUser = userRepository.findByEmail(principal.getName());
+            model.addAttribute("currentUser", currentUser);
+        }
+        return "contact"; // Retorna la vista contact.html
+    }
 }

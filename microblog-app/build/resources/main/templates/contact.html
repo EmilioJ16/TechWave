@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tech Wave - Contacto</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/public/css/styles.css}">
+    <link rel="icon" type="image/x-icon" th:href="@{/public/images/iconoWeb.ico}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar visible">
+    <ul class="navbar-left">
+        <li th:if="${currentUser != null}">
+            <a th:href="@{/logout}" class="nav-btn">Logout</a>
+        </li>
+        <li th:if="${currentUser == null}">
+            <a th:href="@{/login}" class="nav-btn">Iniciar Sesión/Registrarse</a>
+        </li>
+    </ul>
+    <ul class="navbar-center">
+        <li><a th:href="@{/}">Inicio</a></li>
+        <li><a th:href="@{/presupuestos}">Solicita presupuesto</a></li>
+        <li><a th:href="@{/shop}">Nuestros productos</a></li>
+        <li><a th:href="@{/contacto}" class="active">Contacto</a></li>
+    </ul>
+</nav>
+
+<!-- NUEVO: Sección Quienes somos -->
+<section class="about-section container">
+    <h2>Quiénes somos</h2>
+    <p>Tech Wave es líder en innovación tecnológica. Nuestra misión es ofrecerte las últimas novedades tecnológicas con la mejor atención personalizada.</p>
+
+    <div class="company-values">
+        <div class="value">
+            <i class="fas fa-star"></i>
+            <h3>Innovación</h3>
+        </div>
+        <div class="value">
+            <i class="fas fa-heart"></i>
+            <h3>Pasión</h3>
+        </div>
+        <div class="value">
+            <i class="fas fa-handshake"></i>
+            <h3>Compromiso</h3>
+        </div>
+    </div>
+</section>
+
+<!-- NUEVO: Ubicación mapa interactivo -->
+<section class="location-section container">
+    <h2>Nuestra ubicación</h2>
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.573379221756!2d-3.7272023240615037!3d40.31757306014923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422599bc2c612d%3A0x2e8959bdc160f380!2sUniversidad%20Carlos%20III%20de%20Madrid!5e0!3m2!1ses!2ses!4v1712701348337!5m2!1ses!2ses"
+        width="100%" height="350" style="border:0; border-radius:15px; margin-top: 1rem;"
+        allowfullscreen="" loading="lazy">
+    </iframe>
+
+</section>
+
+<!-- Contacto (tu formulario actual) -->
+<main class="container contact-container">
+    <h1 class="contact-title">Contacto</h1>
+
+    <form id="form-contact">
+        <input type="text" name="nombre" placeholder="Nombre completo" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="mensaje" placeholder="Escribe tu mensaje..." required></textarea>
+        <button type="submit" class="cta-button">Enviar mensaje</button>
+    </form>
+</main>
+
+<!-- Footer -->
+<footer class="reveal">
+    <p>© 2025 Tech Wave - C/ UC3M</p>
+    <div class="social-icons">
+        <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="icon"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script th:src="@{/public/scripts/inicio.js}"></script>
+<script th:src="@{/public/scripts/contact.js}"></script>
+</body>
+</html>
