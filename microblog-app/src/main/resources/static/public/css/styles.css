@@ -745,7 +745,7 @@ footer {
     color: var(--dark);
 }
 
-/------------------------------------Estilos para la pagina de contacto----------------------------------/
+/*------------------------------------Estilos para la pagina de contacto----------------------------------*/
 .contact-container {
     max-width: 700px;
     margin: 8rem auto 4rem;

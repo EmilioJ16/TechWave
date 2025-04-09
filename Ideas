@@ -22,6 +22,10 @@ Los usuarios pueden guardar productos en una lista de deseos. Si un producto baj
 Linkear el footer con RRSS simulando la empresa
 
 
+5 PUNTOS A DESARROLLAR 
 
-
-csrf problema
+1- Buscador
+2- Filtros
+3- Histroial
+4- Finalizacion
+5- Revisar carrito si metes 2 iguales no va y añadir botones de +- cantidad
