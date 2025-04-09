@@ -1,6 +1,10 @@
 package es.uc3m.microblog.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class PurchaseItem {
@@ -11,12 +15,16 @@ public class PurchaseItem {
 
     @ManyToOne
     @JoinColumn(name = "purchase_id")
+    @JsonIgnore
     private Purchase purchase;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
+    @JsonIgnore
     private Product product;
 
+    @NotNull
+    @Min(value = 1, message = "La cantidad debe ser al menos 1")
     private Integer quantity;
     private Double priceAtPurchase; // Precio en el momento de la compra
 

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Purchase {
 
@@ -22,6 +24,7 @@ public class Purchase {
 
     // Relación 1:N con PurchaseItem
     @OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<PurchaseItem> items;
 
     // Getters y Setters

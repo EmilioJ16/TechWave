@@ -24,7 +24,7 @@ public class WebSecurityConfig {
                 .anyRequest().authenticated()
                 
             )
-            .csrf(AbstractHttpConfigurer::disable)
+            .csrf(AbstractHttpConfigurer::disable)//TODO: Quitar el token este de csrf, y añadir lo del correo en el html para que se cree el token correctamente  .
             .formLogin(formLogin -> formLogin
                 .loginPage("/login")
                 .usernameParameter("email")

@@ -2,7 +2,11 @@ package es.uc3m.microblog.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Category {
@@ -13,10 +17,12 @@ public class Category {
 
     @NotBlank(message = "El nombre de la categoría no puede estar vacío.")
     @Column(unique = true, nullable = false)
+    @Size(max = 64, message = "El nombre no puede tener más de 64 caracteres.")
     private String name;
 
     // Relación bidireccional con Product
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Product> products;
 
     // Getters y Setters

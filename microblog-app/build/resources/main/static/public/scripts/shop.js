@@ -135,22 +135,28 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch("/api/cart")
         .then(response => response.json())
         .then(cart => {
+            console.log("Carrito recibido del backend:", cart);
             // Actualizar contador del carrito
             document.getElementById("cart-count").innerText = cart.items.length;
             // Vaciar la tabla
             cartTableBody.innerHTML = "";
             let total = 0;
             cart.items.forEach(item => {
-                total += item.product.currentPrice * item.quantity;
+                if (item.product && item.product.currentPrice !== undefined) {
+                    total += item.product.currentPrice * item.quantity;
+                }
                 const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td><img src="${item.product.image}" width="80"></td>
-                    <td>${item.product.name}</td>
-                    <td>$${item.product.currentPrice}</td>
-                    <td>${item.quantity}</td>
-                    <td>$${(item.product.currentPrice * item.quantity).toFixed(2)}</td>
-                    <td><a href="#" class="borrar" data-id="${item.product.id}">X</a></td>
-                `;
+                if (item.product) {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${item.product.name}</td>
+                        <td>$${item.product.currentPrice}</td>
+                        <td>${item.quantity}</td>
+                        <td>$${(item.product.currentPrice * item.quantity).toFixed(2)}</td>
+                        <td><a href="#" class="borrar" data-id="${item.product.id}">X</a></td>
+                    `;
+                    cartTableBody.appendChild(row);
+                }
                 cartTableBody.appendChild(row);
             });
             totalPrecioElemento.textContent = `$${total.toFixed(2)}`;

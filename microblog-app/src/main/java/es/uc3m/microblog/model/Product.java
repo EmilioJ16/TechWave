@@ -2,7 +2,13 @@ package es.uc3m.microblog.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+
+import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 @Entity
 public class Product {
@@ -11,10 +17,12 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "El nombre del producto es obligatorio.")
+    @Column(nullable = false, length = 100)
+    @NotBlank(message = "El nombre del producto no puede estar vacío, es obligatorio.")
     private String name;
 
     @Lob
+    @Column(length = 255)
     private String description;
 
     // Ruta de la imagen (guardada en /public/images/)
@@ -26,11 +34,21 @@ public class Product {
     private Category category;
 
     // Relación con Price (histórico de precios)
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<Price> prices;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Price> prices= new ArrayList<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<CartItem> cartItems = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<PurchaseItem> purchaseItems = new ArrayList<>();
 
     // Método auxiliar para obtener el precio actual
     @Transient
+    @JsonProperty
     public Double getCurrentPrice() {
         // Se devuelve el precio con fecha de inicio más reciente (no futura)
         // Este método puede ser más complejo, dependiendo de la lógica de negocio
@@ -60,4 +78,21 @@ public class Product {
 
     public List<Price> getPrices() { return prices; }
     public void setPrices(List<Price> prices) { this.prices = prices; }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+    
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+    
+    public List<PurchaseItem> getPurchaseItems() {
+        return purchaseItems;
+    }
+    
+    public void setPurchaseItems(List<PurchaseItem> purchaseItems) {
+        this.purchaseItems = purchaseItems;
+    }
+    
 }

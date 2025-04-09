@@ -16,8 +16,9 @@ public class CartController {
     private CartService cartService;
     
     @GetMapping
-    public ResponseEntity<Cart> getCart(Principal principal) {
+    public ResponseEntity<Cart> getCart(Principal principal) {//devuelve el carrito del usuario autenticado
         Cart cart = cartService.getCart(principal.getName());
+        System.out.println("Devolviendo carrito al frontend. Total productos: " + cart.getItems().size());
         return ResponseEntity.ok(cart);
     }
     
@@ -30,6 +31,8 @@ public class CartController {
     @DeleteMapping("/remove/{productId}")
     public ResponseEntity<?> removeFromCart(@PathVariable Integer productId, Principal principal) {
         cartService.removeItem(principal.getName(), productId);
+        Cart cart = cartService.getCart(principal.getName());
+        System.out.println("Devolviendo carrito al frontend tras eliminar producto. Total productos: " + cart.getItems().size());
         return ResponseEntity.ok().build();
     }
     
