@@ -61,7 +61,10 @@
                     <div id="total-carrito">
                         <p>Total: <span id="total-precio">$0</span></p>
                     </div>
-                    <a href="#" id="btn-clear-cart">Vaciar carrito</a>
+                    <div class="cart-actions">
+                        <a href="#" id="btn-clear-cart" class="btn-2">Vaciar carrito</a>
+                        <a href="/checkout" class="btn-2" id="btn-checkout">Comprar</a>
+                    </div>
                 </div>
             </li>
             <li th:if="${currentUser != null}">

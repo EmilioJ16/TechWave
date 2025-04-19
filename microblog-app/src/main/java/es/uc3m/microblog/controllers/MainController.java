@@ -130,4 +130,14 @@ public class MainController {
         }
         return "contact"; // Retorna la vista contact.html
     }
+
+    @GetMapping("/checkout")
+    public String showCheckoutPage(Model model, Principal principal) {
+        if (principal != null) {
+            User currentUser = userRepository.findByEmail(principal.getName());
+            model.addAttribute("currentUser", currentUser);
+        }
+        return "checkout";
+    }
+
 }

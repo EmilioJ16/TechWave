@@ -101,7 +101,7 @@ body {
     top: 100%;
     z-index: 1;
     backdrop-filter: blur(10px);
-    background-color: rgba(78, 75, 80, 0.46);
+    background-color: rgba(78, 75, 80, 0.85);
     padding: 20px;
     min-width: 400px;
     min-height: 400px;

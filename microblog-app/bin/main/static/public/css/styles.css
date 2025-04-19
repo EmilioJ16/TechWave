@@ -857,3 +857,77 @@ footer {
     }
 }
 
+/*----------Estilos para pagina de Finalizar Compra-----------------*/
+.checkout-container {
+    max-width: 700px;
+    margin: 8rem auto 4rem;
+    background: var(--dark-secondary);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+.checkout-container h1,
+.checkout-container h2 {
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.checkout-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.checkout-form-group label {
+    display: block;
+    font-weight: bold;
+    color: var(--light);
+    margin-bottom: 0.5rem;
+}
+
+.checkout-form-group input,
+.checkout-form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    background: var(--dark);
+    border: 2px solid var(--primary);
+    color: var(--light);
+    font-size: 1rem;
+}
+
+.checkout-summary ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 1rem 0;
+}
+
+.checkout-summary li {
+    margin-bottom: 0.5rem;
+}
+
+.checkout-summary p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary);
+    text-align: right;
+}
+
+.checkout-button {
+    display: block;
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--primary);
+    color: var(--dark);
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.checkout-button:hover {
+    transform: scale(1.03);
+}
