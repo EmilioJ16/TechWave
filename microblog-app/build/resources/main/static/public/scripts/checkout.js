@@ -52,8 +52,11 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (res.ok) {
-                Swal.fire("Compra realizada", "Tu pedido ha sido procesado con éxito", "success")
-                    .then(() => window.location.href = "/shop");
+                Swal.fire({
+                    icon: "success",
+                    title: "Compra realizada",
+                    html: "Tu pedido ha sido procesado con éxito.<br>Se te enviará un correo de confirmación."
+                }).then(() => window.location.href = "/shop");
             } else {
                 Swal.fire("Error", "No se pudo completar la compra", "error");
             }

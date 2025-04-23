@@ -27,7 +27,10 @@ public class PurchaseServiceImpl implements PurchaseService {
     
     @Autowired
     private PurchaseRepository purchaseRepository;
-    
+
+    @Autowired
+    private EmailService emailService;
+
     @Override
     public void checkout(String userEmail, CheckoutDto checkoutDto) {
         User user = userRepository.findByEmail(userEmail);
@@ -59,6 +62,32 @@ public class PurchaseServiceImpl implements PurchaseService {
         purchaseRepository.save(purchase);
         
         cartService.clearCart(userEmail);
+
+        // Construir el resumen de compra
+        StringBuilder resumen = new StringBuilder();
+        resumen.append("Gracias por tu compra en TechWave!\n\n");
+        resumen.append("ID de compra: ").append(purchase.getId()).append("\n");
+        resumen.append("Fecha: ").append(purchase.getPurchaseDate()).append("\n");
+        resumen.append("Destinatario: ").append(purchase.getRecipientName()).append("\n");
+        resumen.append("Dirección de envío: ").append(purchase.getShippingAddress()).append("\n\n");
+        resumen.append("Resumen de productos:\n");
+
+        for (PurchaseItem item : purchase.getItems()) {
+            resumen.append("- ").append(item.getProduct().getName())
+                .append(" × ").append(item.getQuantity())
+                .append(" = ").append(String.format("%.2f", item.getQuantity() * item.getPriceAtPurchase()))
+                .append("€\n");
+        }
+
+        resumen.append("\nTotal: ").append(String.format("%.2f", purchase.getTotalAmount())).append("€\n");
+
+        // Enviar email al usuario
+        emailService.sendSimpleMessage(
+            user.getEmail(),
+            "Confirmación de compra en TechWave",
+            resumen.toString()
+        );
+
     }
 
     @Override
