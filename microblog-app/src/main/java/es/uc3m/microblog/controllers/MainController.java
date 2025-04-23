@@ -52,23 +52,27 @@ public class MainController {
     
     
     @GetMapping("/shop")
-    public String shopPage(Model model, Principal principal) {
-        // Si el usuario está autenticado, lo añadimos al modelo
+    public String shopPage(@RequestParam(value = "keyword", required = false) String keyword,
+                           Model model, Principal principal) {
         if (principal != null) {
             User currentUser = userRepository.findByEmail(principal.getName());
             model.addAttribute("currentUser", currentUser);
         }
-
-        // Convertir Iterable<Product> en List<Product>
-        List<Product> products = StreamSupport
+    
+        List<Product> products;
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            products = productRepository.searchByKeyword(keyword);
+            model.addAttribute("keyword", keyword); // Para mantener el texto en el input
+        } else {
+            products = StreamSupport
                 .stream(productRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
-
-        System.out.println("Found " + products.size() + " products.");
+        }
+    
         model.addAttribute("products", products);
-
-        return "shop"; // Retorna la vista shop.html
+        return "shop";
     }
+     
 
     // Vista de perfil de usuario
     @GetMapping("/user/{userId}")

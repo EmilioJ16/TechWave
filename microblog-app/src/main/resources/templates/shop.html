@@ -79,9 +79,11 @@
     <main class="shop-container container">
         <h1>Catálogo de Productos</h1>
         <!-- Buscador de productos -->
-        <div class="search-box">
-            <input type="text" id="search" placeholder="Buscar productos..."/>
-        </div>
+        <form class="search-box" th:action="@{/shop}" method="get" style="text-align: center; margin-bottom: 2rem;">
+            <input type="text" name="keyword" placeholder="Buscar productos..." 
+                   th:value="${keyword}" style="padding: 0.5rem 1rem; border-radius: 10px; border: none;">
+            <button type="submit" style="padding: 0.5rem 1rem; background: var(--primary); color: var(--dark); border-radius: 10px; border: none;">Buscar</button>
+        </form>
         <div class="product-grid">
             <!-- Se itera sobre la lista de productos pasada desde el controlador -->
             <div class="product-card" th:each="product : ${products}">
