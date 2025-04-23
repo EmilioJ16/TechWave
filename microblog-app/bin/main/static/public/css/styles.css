@@ -744,7 +744,33 @@ footer {
     background: var(--primary);
     color: var(--dark);
 }
+/*Estilos para historial de compras*/
+.profile-purchases {
+    background: var(--dark-secondary);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+}
 
+.profile-purchases h2 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.purchase-entry {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+.purchase-entry ul {
+    margin: 0.5rem 0;
+    padding-left: 1.2rem;
+}
+
+.purchase-entry p {
+    margin: 0.3rem 0;
+}
 /*------------------------------------Estilos para la pagina de contacto----------------------------------*/
 .contact-container {
     max-width: 700px;

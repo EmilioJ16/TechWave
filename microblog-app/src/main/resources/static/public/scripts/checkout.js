@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const body = {
             recipientName: name,
-            address: address
+            shippingAddress: address
         };
 
         try {

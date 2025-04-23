@@ -5,4 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface PurchaseRepository extends CrudRepository<Purchase, Integer> {
     List<Purchase> findByUser(User user);
+    List<Product> findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String name, String description);
+
 }
+
