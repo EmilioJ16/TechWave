@@ -771,6 +771,69 @@ footer {
 .purchase-entry p {
     margin: 0.3rem 0;
 }
+
+/* Resumen de cada compra */
+.purchase-entry {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 1rem;
+  }
+  
+  /* Fila de resumen */
+  .purchase-summary {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .purchase-summary span {
+    font-size: 0.95rem;
+    color: var(--light);
+  }
+  
+  .purchase-number {
+    font-weight: bold;
+    color: var(--primary);
+  }
+  
+  .purchase-date, .purchase-total {
+    flex-grow: 1;
+  }
+  
+  /* Botón ver detalles */
+  .view-details-btn {
+    background: none;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s, color 0.2s;
+  }
+  
+  .view-details-btn:hover {
+    background: var(--primary);
+    color: var(--dark);
+  }
+  
+  /* Detalles ocultos */
+  .purchase-details {
+    margin-top: 0.8rem;
+    padding-left: 1rem;
+    color: #ccc;
+  }
+  
+  .purchase-details p {
+    margin: 0.3rem 0;
+  }
+  
+  .purchase-details ul {
+    margin: 0.5rem 0;
+    padding-left: 1.2rem;
+  }
+  
 /*------------------------------------Estilos para la pagina de contacto----------------------------------*/
 .contact-container {
     max-width: 700px;

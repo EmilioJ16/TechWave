@@ -34,6 +34,10 @@ public class PurchaseController {
             dto.setPurchaseDate(p.getPurchaseDate().toString());
             dto.setTotalAmount(p.getTotalAmount());
 
+            // ← Aquí asignas los nuevos campos:
+            dto.setRecipientName(p.getRecipientName());
+            dto.setShippingAddress(p.getShippingAddress());
+
             List<PurchaseItemDto> itemDtos = p.getItems().stream().map(i -> {
                 PurchaseItemDto itemDto = new PurchaseItemDto();
                 itemDto.setProductName(i.getProduct().getName());

@@ -3,33 +3,28 @@ package es.uc3m.microblog.dto;
 import java.util.List;
 
 public class PurchaseDto {
-
     private String purchaseDate;
-    private double totalAmount;
+    private Double totalAmount;
     private List<PurchaseItemDto> items;
 
-    // Getters y Setters
-    public String getPurchaseDate() {
-        return purchaseDate;
-    }
+    // → Nuevos campos
+    private String recipientName;
+    private String shippingAddress;
 
-    public void setPurchaseDate(String purchaseDate) {
-        this.purchaseDate = purchaseDate;
-    }
+    // Getters / Setters existentes...
+    public String getPurchaseDate() { return purchaseDate; }
+    public void setPurchaseDate(String purchaseDate) { this.purchaseDate = purchaseDate; }
 
-    public double getTotalAmount() {
-        return totalAmount;
-    }
+    public Double getTotalAmount() { return totalAmount; }
+    public void setTotalAmount(Double totalAmount) { this.totalAmount = totalAmount; }
 
-    public void setTotalAmount(double totalAmount) {
-        this.totalAmount = totalAmount;
-    }
+    public List<PurchaseItemDto> getItems() { return items; }
+    public void setItems(List<PurchaseItemDto> items) { this.items = items; }
 
-    public List<PurchaseItemDto> getItems() {
-        return items;
-    }
+    // → Getters / Setters nuevos
+    public String getRecipientName() { return recipientName; }
+    public void setRecipientName(String recipientName) { this.recipientName = recipientName; }
 
-    public void setItems(List<PurchaseItemDto> items) {
-        this.items = items;
-    }
+    public String getShippingAddress() { return shippingAddress; }
+    public void setShippingAddress(String shippingAddress) { this.shippingAddress = shippingAddress; }
 }
