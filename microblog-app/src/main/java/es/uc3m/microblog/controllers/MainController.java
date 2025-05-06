@@ -2,9 +2,11 @@ package es.uc3m.microblog.controllers;
 
 import es.uc3m.microblog.model.User;
 import es.uc3m.microblog.model.UserRepository;
+import es.uc3m.microblog.model.CategoryRepository;
 import es.uc3m.microblog.model.Product;
 import es.uc3m.microblog.model.ProductRepository;
 import es.uc3m.microblog.services.UserService;
+import es.uc3m.microblog.model.Category;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,9 +34,12 @@ public class MainController {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     // Vista principal: muestra los datos generales y los móviles destacados (categoria "Mobile")
     @GetMapping("/")
-    public String mainView(Model model, Principal principal) {
+    public String mainView(Model    model, Principal principal) {
         if (principal != null) {
             User currentUser = userRepository.findByEmail(principal.getName());
             model.addAttribute("currentUser", currentUser);
@@ -44,25 +49,35 @@ public class MainController {
         }
         
         List<Product> mobiles = productRepository.findByCategoryName("Mobile");
-        System.out.println("Found " + mobiles.size() + " mobile products.");
+        //System.out.println("Found " + mobiles.size() + " mobile products.");
         model.addAttribute("mobiles", mobiles);
         
         return "index";  // Retorna la vista index.html
-    }
-    
+    }   
     
     @GetMapping("/shop")
     public String shopPage(@RequestParam(value = "keyword", required = false) String keyword,
+                           @RequestParam(value="category", required=false) Integer categoryId,
                            Model model, Principal principal) {
         if (principal != null) {
             User currentUser = userRepository.findByEmail(principal.getName());
             model.addAttribute("currentUser", currentUser);
         }
+
+        // 1) Traer siempre las categorías
+        List<Category> categories = StreamSupport
+            .stream(categoryRepository.findAll().spliterator(), false)
+            .collect(Collectors.toList());
+            model.addAttribute("categories", categories);
     
+        // 2) Filtrar productos por categoría
         List<Product> products;
         if (keyword != null && !keyword.trim().isEmpty()) {
             products = productRepository.searchByKeyword(keyword);
-            model.addAttribute("keyword", keyword); // Para mantener el texto en el input
+            model.addAttribute("keyword", keyword);
+        } else if (categoryId != null) {
+            products = productRepository.findByCategoryId(categoryId);
+            model.addAttribute("selectedCategory", categoryId);
         } else {
             products = StreamSupport
                 .stream(productRepository.findAll().spliterator(), false)
@@ -72,7 +87,6 @@ public class MainController {
         model.addAttribute("products", products);
         return "shop";
     }
-     
 
     // Vista de perfil de usuario
     @GetMapping("/user/{userId}")

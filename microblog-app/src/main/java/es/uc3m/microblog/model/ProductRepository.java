@@ -15,6 +15,7 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
        "LOWER(CAST(p.description AS string)) LIKE LOWER(CONCAT('%', :keyword, '%'))")
     List<Product> searchByKeyword(@Param("keyword") String keyword);
 
-
+    @Query("SELECT p FROM Product p WHERE p.category.id = :catId")
+    List<Product> findByCategoryId(@Param("catId") Integer catId);
 
 }

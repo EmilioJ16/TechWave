@@ -77,6 +77,19 @@
     <!-- Contenedor principal: Catálogo de productos -->
     <main class="shop-container container">
         <h1>Catálogo de Productos</h1>
+        <form id="category-filter" method="get" th:action="@{/shop}" style="text-align: center; margin-bottom: 1.5rem;">
+            <label for="categorySelect"><strong>Filtrar por categoría:</strong></label>
+            <select name="category" id="categorySelect">
+              <!-- Opción “Todas” (sin filtro) -->
+              <option value="">Todas</option>
+              <option th:each="cat : ${categories}"
+                      th:value="${cat.id}"
+                      th:text="${cat.name}"
+                      th:selected="${cat.id == selectedCategory}">
+              </option>
+            </select>
+            <button type="submit" class="btn-filter">Filtrar</button>
+          </form>          
         <!-- Buscador de productos -->
         <form class="search-box" th:action="@{/shop}" method="get" style="text-align: center; margin-bottom: 2rem;">
             <input type="text" name="keyword" placeholder="Buscar productos..." 
@@ -111,9 +124,11 @@
     </footer>
 
     <!-- Scripts -->
+    <div th:if="${#authorization.expression('isAuthenticated()')}">
+        <script th:src="@{/public/scripts/shop.js}"></script>
+    </div>  
+    <script th:src="@{/public/scripts/inicio.js}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    <script th:src="@{/public/scripts/inicio.js}"></script>
-    <script th:src="@{/public/scripts/shop.js}"></script>
 </body>
 </html>
