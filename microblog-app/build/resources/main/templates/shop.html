@@ -37,7 +37,7 @@
         </ul>
         <!-- Sección Derecha: Icono del carrito con menú desplegable -->
         <ul class="navbar-right">
-            <li class="submenu">
+            <li class="submenu" th:if="${currentUser != null}">
                 <a href="#" id="btn-cart">
                     <i class="fas fa-shopping-cart"></i>
                     <span id="cart-count" th:text="${cart != null ? cart.totalItems : 0}">0</span>
@@ -104,10 +104,28 @@
                     <h4 th:text="${product.name}">Nombre del producto</h4>
                     <p th:text="${product.description}">Descripción breve del producto</p>
                     <div class="product-details">
-                        <span class="price" th:text="'$' + ${product.currentPrice}">$0</span>
+                      <span class="price" th:text="'$' + ${product.currentPrice}">$0</span>
                     </div>
-                    <a href="#" class="btn-2 add-to-cart" th:attr="data-id=${product.id}">Agregar al carrito</a>
-                </div>
+                  
+                    <!-- ACCIONES: carrito vs candado -->
+                    <div class="product-actions">
+                      <!-- Si está autenticado -->
+                      <a th:if="${currentUser != null}"
+                         href="#"
+                         class="btn-2 add-to-cart"
+                         th:attr="data-id=${product.id}">
+                        Agregar al carrito
+                      </a>
+                  
+                      <!-- Si NO está autenticado -->
+                      <button th:unless="${currentUser != null}"
+                              type="button"
+                              class="btn-disabled"
+                              title="Tienes que registrarte para poder realizar compras">
+                        <i class="fas fa-lock"></i>
+                      </button>
+                    </div>
+                  </div>
             </div>
         </div>
     </main>
@@ -116,10 +134,9 @@
     <footer class="reveal">
         <p>© 2025 Tech Wave - C/ UC3M</p>
         <div class="social-icons">
-            <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="icon"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61576045049350&locale=es_ES" class="icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/techwave_eja" class="icon"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/techwave.eja/" class="icon"><i class="fab fa-instagram"></i></a>
         </div>
     </footer>
 
