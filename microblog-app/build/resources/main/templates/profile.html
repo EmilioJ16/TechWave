@@ -120,5 +120,9 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script th:src="@{/public/scripts/inicio.js}"></script>
 
+    <div th:if="${#authorization.expression('isAuthenticated()')}">
+        <script th:src="@{/public/scripts/purchase.js}"></script>
+    </div>
+    
 </body>
 </html>

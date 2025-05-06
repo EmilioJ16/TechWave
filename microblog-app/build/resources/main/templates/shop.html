@@ -126,9 +126,14 @@
     <!-- Scripts -->
     <div th:if="${#authorization.expression('isAuthenticated()')}">
         <script th:src="@{/public/scripts/shop.js}"></script>
+        <script th:src="@{/public/scripts/purchase.js}"></script>
     </div>  
-    <script th:src="@{/public/scripts/inicio.js}"></script>
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script th:src="@{/public/scripts/inicio.js}"></script>
+
+
+    
 </body>
 </html>

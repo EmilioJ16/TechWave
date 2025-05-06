@@ -5,17 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
 
 
-    // Inicializar Swiper
-    var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 3,
-        spaceBetween: 30,
-        loop: true,
-        loopFillGroupWithBlack: true,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev"
-        }
-    });
 
     // Variables del Carrito
     const totalPrecioElemento = document.getElementById("total-precio");
