@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tech Wave - Tienda</title>
+    <link rel="stylesheet" th:href="@{/public/css/styles_shop.css}">
+    <!-- Swiper, Font Awesome y Boxicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" th:href="@{/public/images/iconoWeb.ico}">
+
+    
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <!-- Sección Izquierda -->
+        <ul class="navbar-left">
+            <li th:if="${currentUser != null}">
+                <a th:href="@{/logout}" class="nav-btn">Logout</a>
+            </li>
+            <li th:if="${currentUser == null}">
+                <a th:href="@{/login}" class="nav-btn">Iniciar Sesión/Registrarse</a>
+            </li>
+        </ul>
+        <!-- Sección Central -->
+        <ul class="navbar-center">
+            <li><a th:href="@{/}">Inicio</a></li>
+            <li><a th:href="@{/shop}" class="active">Nuestros productos</a></li>
+            <li><a th:href="@{/contacto}">Contacto</a></li>
+        </ul>
+        <!-- Sección Derecha: Icono del carrito con menú desplegable -->
+        <ul class="navbar-right">
+            <li class="submenu" th:if="${currentUser != null}">
+                <a href="#" id="btn-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count" th:text="${cart != null ? cart.totalItems : 0}">0</span>
+                </a>
+                <div id="carrito">
+                    <table id="lista-carrito">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Precio total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Los items del carrito se cargarán vía JavaScript -->
+                        </tbody>
+                    </table>
+                    <div id="total-carrito">
+                        <p>Total: <span id="total-precio">$0</span></p>
+                    </div>
+                    <div class="cart-actions">
+                        <a href="#" id="btn-clear-cart" class="btn-2">Vaciar carrito</a>
+                        <a href="/checkout" class="btn-2" id="btn-checkout">Comprar</a>
+                    </div>
+                </div>
+            </li>
+            <li th:if="${currentUser != null}">
+                <a th:href="@{'/user/' + ${currentUser.id}}" class="username-link">
+                    <span th:text="${currentUser.name}">Nombre Usuario</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Contenedor principal: Catálogo de productos -->
+    <main class="shop-container container">
+        <h1>Catálogo de Productos</h1>
+        <form id="category-filter" method="get" th:action="@{/shop}" style="text-align: center; margin-bottom: 1.5rem;">
+            <label for="categorySelect"><strong>Filtrar por categoría:</strong></label>
+            <select name="category" id="categorySelect">
+              <!-- Opción “Todas” (sin filtro) -->
+              <option value="">Todas</option>
+              <option th:each="cat : ${categories}"
+                      th:value="${cat.id}"
+                      th:text="${cat.name}"
+                      th:selected="${cat.id == selectedCategory}">
+              </option>
+            </select>
+            <button type="submit" class="btn-filter">Filtrar</button>
+          </form>          
+        <!-- Buscador de productos -->
+        <form class="search-box" th:action="@{/shop}" method="get" style="text-align: center; margin-bottom: 2rem;">
+            <input type="text" name="keyword" placeholder="Buscar productos..." 
+                   th:value="${keyword}" style="padding: 0.5rem 1rem; border-radius: 10px; border: none;">
+            <button type="submit" style="padding: 0.5rem 1rem; background: var(--primary); color: var(--dark); border-radius: 10px; border: none;">Buscar</button>
+        </form>
+        <div class="product-grid">
+            <!-- Se itera sobre la lista de productos pasada desde el controlador -->
+            <div class="product-card" th:each="product : ${products}">
+                <img th:src="@{${product.image}}" th:alt="${product.name}">
+                <div class="product-info">
+                    <h4 th:text="${product.name}">Nombre del producto</h4>
+                    <p th:text="${product.description}">Descripción breve del producto</p>
+                    <div class="product-details">
+                      <span class="price" th:text="'$' + ${product.currentPrice}">$0</span>
+                    </div>
+                  
+                    <div class="product-actions">
+                      <!-- Si está autenticado -->
+                      <a th:if="${currentUser != null}"
+                         href="#"
+                         class="btn-2 add-to-cart"
+                         th:attr="data-id=${product.id}">
+                        Agregar al carrito
+                      </a>
+                  
+                      <!-- Si NO está autenticado -->
+                      <button th:unless="${currentUser != null}"
+                              type="button"
+                              class="btn-disabled"
+                              title="Tienes que registrarte para poder realizar compras">
+                        <i class="fas fa-lock"></i>
+                      </button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="reveal">
+        <p>© 2025 Tech Wave - C/ UC3M</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61576045049350&locale=es_ES" class="icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/techwave_eja" class="icon"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/techwave.eja/" class="icon"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <div th:if="${#authorization.expression('isAuthenticated()')}">
+        <script th:src="@{/public/scripts/shop.js}"></script>
+        <script th:src="@{/public/scripts/purchase.js}"></script>
+    </div>  
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script th:src="@{/public/scripts/inicio.js}"></script>
+
+
+    
+</body>
+</html>
