@@ -8,7 +8,10 @@
     <link rel="stylesheet" th:href="@{/public/css/styles.css}">
     <link rel="icon" type="image/x-icon" th:href="@{/public/images/iconoWeb.ico}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
@@ -29,9 +32,15 @@
         <li><a th:href="@{/shop}">Nuestros productos</a></li>
         <li><a th:href="@{/contacto}" class="active">Contacto</a></li>
     </ul>
+    <ul class="navbar-right">
+        <li th:if="${currentUser != null}">
+            <a th:href="@{'/user/' + ${currentUser.id}}" class="username-link">
+                <span th:text="${currentUser.name}">Nombre Usuario</span>
+            </a>
+        </li>
+    </ul>
 </nav>
 
-<!-- NUEVO: Sección Quienes somos -->
 <section class="about-section container">
     <h2>Quiénes somos</h2>
     <p>Tech Wave es líder en innovación tecnológica. Nuestra misión es ofrecerte las últimas novedades tecnológicas con la mejor atención personalizada.</p>
@@ -52,7 +61,6 @@
     </div>
 </section>
 
-<!-- NUEVO: Ubicación mapa interactivo -->
 <section class="location-section container">
     <h2>Nuestra ubicación</h2>
     <iframe 
@@ -63,7 +71,6 @@
 
 </section>
 
-<!-- Contacto (tu formulario actual) -->
 <main class="container contact-container">
     <h1 class="contact-title">Contacto</h1>
 

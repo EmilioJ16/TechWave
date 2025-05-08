@@ -23,7 +23,7 @@ public class ContactController {
         // Ahora ya no bloquea, se ejecuta en segundo plano
         emailService.sendSimpleMessage("techwave.eja@gmail.com", subject, message);
 
-        // Respuesta inmediata al frontend
+        // Respuesta al frontend
         return ResponseEntity.ok().body(
             new ApiResponse(true, "Gracias " + contactDto.getNombre() + ", tu mensaje ha sido enviado correctamente.")
         );

@@ -12,8 +12,7 @@
         <!-- Swiper CSS -->
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     
-        <!-- Favicon (icono) dentro de /static/images -->
-        <link rel="icon" type="image/x-icon" th:href="@{/public/images/iconoWeb.ico}">
+        <link rel="icon" th:href="@{/public/images/iconoWeb.ico}">
 
         <meta name="_csrf" th:content="${_csrf.token}"/>
         <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
@@ -103,11 +102,10 @@
                 <div class="consoles-text">
                     <h2>Next Generation</h2>
                     <p>Descubre las consolas más potentes</p>
-                    <a th:href="@{/galeria}" class="cta-button">Ver Consolas</a>
+                    <a th:href="@{/shop?category=3}" class="cta-button">Ver Consolas</a>
                 </div>
                 <div class="consoles-image">
-                    <!-- Imagen dentro de public/images -->
-                    <img th:src="@{public/images/play5.png}" alt="Consolas">
+                    <img th:src="@{public/images/consoles/play5.png}" alt="Consolas">
                 </div>
             </div>
         </section>

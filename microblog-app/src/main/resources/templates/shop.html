@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Tech Wave - Tienda</title>
-    <!-- Hoja de estilos para la tienda -->
     <link rel="stylesheet" th:href="@{/public/css/styles_shop.css}">
     <!-- Swiper, Font Awesome y Boxicons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
@@ -11,6 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" th:href="@{/public/images/iconoWeb.ico}">
+
     
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
@@ -107,7 +107,6 @@
                       <span class="price" th:text="'$' + ${product.currentPrice}">$0</span>
                     </div>
                   
-                    <!-- ACCIONES: carrito vs candado -->
                     <div class="product-actions">
                       <!-- Si está autenticado -->
                       <a th:if="${currentUser != null}"
@@ -145,7 +144,6 @@
         <script th:src="@{/public/scripts/shop.js}"></script>
         <script th:src="@{/public/scripts/purchase.js}"></script>
     </div>  
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script th:src="@{/public/scripts/inicio.js}"></script>

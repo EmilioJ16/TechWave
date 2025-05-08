@@ -6,12 +6,10 @@ public class PurchaseDto {
     private String purchaseDate;
     private Double totalAmount;
     private List<PurchaseItemDto> items;
-
-    // → Nuevos campos
     private String recipientName;
     private String shippingAddress;
 
-    // Getters / Setters existentes...
+    // Getters / Setters 
     public String getPurchaseDate() { return purchaseDate; }
     public void setPurchaseDate(String purchaseDate) { this.purchaseDate = purchaseDate; }
 
@@ -21,7 +19,6 @@ public class PurchaseDto {
     public List<PurchaseItemDto> getItems() { return items; }
     public void setItems(List<PurchaseItemDto> items) { this.items = items; }
 
-    // → Getters / Setters nuevos
     public String getRecipientName() { return recipientName; }
     public void setRecipientName(String recipientName) { this.recipientName = recipientName; }
 

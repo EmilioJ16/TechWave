@@ -16,5 +16,4 @@ public class ProductService {
         return productRepository.findByCategoryName(categoryName);
     }
     
-    // Otros métodos: agregar producto, actualizar precios, etc.
 }

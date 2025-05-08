@@ -5,7 +5,6 @@
     --light: #ffffff;
 }
 
-/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +19,6 @@ body {
     overflow-x: hidden;
 }
 
-/* NAVBAR (Se mantiene igual que el tuyo) */
 .navbar {
     position: fixed;
     top: -100px;
@@ -85,7 +83,6 @@ body {
     background: none;
 }
 
-/* 🛒 Carrito Desplegable */
 .submenu {
     position: relative;
 }
@@ -231,7 +228,6 @@ body {
     font-weight: bold;
 }
 
-/* ➕ Botón Agregar al Carrito */
 .btn-2 {
     display: inline-block;
     padding: 0.8rem 1.5rem;
@@ -334,7 +330,7 @@ body {
 
 .filter-group input[type="checkbox"] {
     margin-right: 0.5rem;
-    accent-color: var(--primary); /* compatible con navegadores modernos */
+    accent-color: var(--primary);
 }
 
 .filter-group label:hover {
@@ -382,8 +378,6 @@ body {
     color: rgba(255, 255, 255, 0.5);
   }
   
-
-/* FOOTER (Se mantiene igual que el tuyo) */
 footer {
     padding: 3rem 2rem;
     text-align: center;
@@ -418,10 +412,10 @@ footer {
     .search-box input { width: 90%; }
 }
 
-/* ==== Estilos para el filtro de categoría ==== */
+/* Estilos para el filtro de categoría */
 /* Centrar el formulario de filtro */
 #category-filter {
-    display: flex;                /* ← antes inline-flex */
+    display: flex;                
     align-items: center;
     justify-content: center;
     gap: 1rem;
@@ -430,7 +424,7 @@ footer {
     border-radius: 25px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.5);
   
-    margin: 0 auto 2rem;          /* ← auto en block-level centra */
+    margin: 0 auto 2rem;         
     max-width: fit-content;
   }
   
@@ -442,7 +436,6 @@ footer {
     color: var(--light);
   }
   
-  /* Flecha customizada en el select con un pequeño SVG inline */
 #category-filter select {
     appearance: none;
     background-color: var(--dark);
@@ -454,8 +447,7 @@ footer {
     cursor: pointer;
     min-width: 180px;
     transition: border-color 0.3s ease, background 0.3s ease;
-    
-    /* aquí el SVG de flecha */
+
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23ffffff'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;

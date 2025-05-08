@@ -37,19 +37,15 @@ public class MainController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    // Vista principal: muestra los datos generales y los móviles destacados (categoria "Mobile")
+    // Vista principal
     @GetMapping("/")
-    public String mainView(Model    model, Principal principal) {
+    public String mainView(Model model, Principal principal) {
         if (principal != null) {
             User currentUser = userRepository.findByEmail(principal.getName());
             model.addAttribute("currentUser", currentUser);
-            // Se pueden agregar más atributos para usuarios autenticados
-        } else {
-            // Datos generales para usuarios no autenticados
         }
         
         List<Product> mobiles = productRepository.findByCategoryName("Mobile");
-        //System.out.println("Found " + mobiles.size() + " mobile products.");
         model.addAttribute("mobiles", mobiles);
         
         return "index";  // Retorna la vista index.html
@@ -64,13 +60,13 @@ public class MainController {
             model.addAttribute("currentUser", currentUser);
         }
 
-        // 1) Traer siempre las categorías
+        //Traer siempre las categorías
         List<Category> categories = StreamSupport
             .stream(categoryRepository.findAll().spliterator(), false)
             .collect(Collectors.toList());
             model.addAttribute("categories", categories);
     
-        // 2) Filtrar productos por categoría
+        //Filtrar productos por categoría
         List<Product> products;
         if (keyword != null && !keyword.trim().isEmpty()) {
             products = productRepository.searchByKeyword(keyword);
@@ -149,6 +145,7 @@ public class MainController {
         return "contact"; // Retorna la vista contact.html
     }
 
+    // Página de finalización de compra
     @GetMapping("/checkout")
     public String showCheckoutPage(Model model, Principal principal) {
         if (principal != null) {

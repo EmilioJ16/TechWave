@@ -30,13 +30,7 @@ body {
     /* Convertimos la navbar en contenedor flex */
     display: flex;
     align-items: center;
-    /* justify-content: space-between; // Útil si quieres empujar la parte derecha del todo */
-    
-    /* 
-       Si prefieres que la parte central crezca, 
-       puedes usar space-between y dejar la parte central con flex-grow.
-       Lo veremos abajo.
-    */
+
 }
 
 .navbar.visible {
@@ -107,7 +101,6 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    /* Fondo sin imagen, solo un degradado que en este caso es un color sólido */
     background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9));
 }
 
@@ -248,7 +241,7 @@ footer {
 .icon {
     color: var(--light);
     font-size: 1.5rem;
-    transition: all 0.3s ease; /* Cambiado de 'transform' a 'all' */
+    transition: all 0.3s ease;
 }
 
 .icon:hover {
@@ -357,7 +350,7 @@ footer {
     }
     
     .product-card {
-        aspect-ratio: 1/1.2; /* Rectángulo vertical en móvil */
+        aspect-ratio: 1/1.2; 
     }
 }
 
@@ -525,7 +518,6 @@ footer {
     text-decoration: underline;
 }
 
-/* Si existen reglas duplicadas (como .error-message) se mantienen una sola vez */
 .error-message {
     background: #ffdddd;
     color: #d8000c;
@@ -560,11 +552,6 @@ footer {
     max-width: 1200px;
     margin: 6rem auto 2rem; /* 6rem arriba para compensar la navbar fija */
     padding: 1rem;
-    /* Fondo global: ya es var(--dark) del body, 
-       así que no repetimos. Si quieres un recuadro, podrías usar:
-       background: var(--dark-secondary);
-       border-radius: 10px; 
-    */
     display: flex;
     flex-direction: column;
     gap: 2rem;

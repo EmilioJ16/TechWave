@@ -37,12 +37,6 @@ public class User {
     @Column(nullable = true)
     private Integer points = 0;
 
-
-
-
-
-    // Relación de uno a muchos con los mensajes (si la necesitas, añádela aquí)
-
     // Getters y Setters
 
     public Integer getId() { 
