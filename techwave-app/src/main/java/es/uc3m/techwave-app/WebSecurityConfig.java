@@ -46,5 +46,9 @@ public class WebSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    
+    @Bean
+    UserDetailsService userDetailsService() {
+        return new UserDetailsServiceImpl();
+    }
+
 }
