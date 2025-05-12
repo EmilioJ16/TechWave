@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import es.uc3m.microblog.model.User;
 import es.uc3m.microblog.model.UserRepository;
 
-@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
