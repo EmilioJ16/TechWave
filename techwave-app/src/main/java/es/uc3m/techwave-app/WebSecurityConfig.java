@@ -9,6 +9,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import es.uc3m.microblog.services.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
